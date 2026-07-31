@@ -908,7 +908,13 @@
     closeOnBackdropClick(clinicPollDialog);
     closeOnBackdropClick(clinicPromoDialog);
 
-    if (Date.now() < clinicPromoEndsAt) clinicPromoDialog.showModal();
+    if (Date.now() < clinicPromoEndsAt) {
+      window.addEventListener('load', () => {
+        window.setTimeout(() => {
+          if (!clinicPollDialog.open) clinicPromoDialog.showModal();
+        }, 3000);
+      }, { once: true });
+    }
   </script>
 
 </body>
