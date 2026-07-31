@@ -365,13 +365,20 @@
       margin-bottom: 1.5rem;
     }
 
+    .clinic-card .trainer-link {
+      color: var(--green-dark);
+      font-weight: 600;
+      text-underline-offset: 0.18em;
+    }
+
     .clinic-card .btn {
       border: none;
       cursor: pointer;
       font-family: inherit;
     }
 
-    .clinic-modal {
+    .clinic-modal,
+    .clinic-promo-modal {
       width: min(760px, calc(100% - 2rem));
       max-width: 760px;
       margin: auto;
@@ -384,9 +391,33 @@
       box-shadow: 0 18px 60px rgba(20, 32, 14, 0.32);
     }
 
-    .clinic-modal::backdrop {
+    .clinic-modal::backdrop,
+    .clinic-promo-modal::backdrop {
       background: rgba(20, 32, 14, 0.72);
       backdrop-filter: blur(3px);
+    }
+
+    .clinic-promo-modal {
+      background: transparent;
+    }
+
+    .clinic-promo-modal .clinic-card {
+      position: relative;
+      max-width: none;
+      padding-right: 4.75rem;
+    }
+
+    .clinic-promo-close {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      z-index: 1;
+      background: var(--cream-dark);
+    }
+
+    .clinic-modal-close:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 2px;
     }
 
     .clinic-modal-header {
@@ -722,20 +753,35 @@
     <div class="section-inner">
       <div class="clinic-card">
         <p class="section-label">Clinic in Planning</p>
-        <h2 class="section-title">Help bring Sigvaldi to California this October</h2>
+        <h2 class="section-title">Help bring Sigvaldi Lárus Guðmundsson to California this October</h2>
         <p>
           We are exploring a Bay Area clinic with renowned Icelandic horse trainer
-          Sigvaldi. If you would be interested, choose the October dates that work
+          <a class="trainer-link" href="https://www.sigvaldi.com/" target="_blank" rel="noopener">Sigvaldi Lárus Guðmundsson</a>.
+          If you would be interested, choose the October dates that work
           best for you. Your response will help us decide whether we can make it happen.
         </p>
         <button class="btn btn-primary" type="button" id="open-clinic-poll">Complete the Clinic Poll</button>
       </div>
+      <dialog class="clinic-promo-modal" id="clinic-promo-dialog" aria-labelledby="clinic-promo-title">
+        <div class="clinic-card">
+          <button class="clinic-modal-close clinic-promo-close" type="button" id="close-clinic-promo" aria-label="Close clinic announcement">&times;</button>
+          <p class="section-label">Clinic in Planning</p>
+          <h2 class="section-title" id="clinic-promo-title">Help bring Sigvaldi Lárus Guðmundsson to California this October</h2>
+          <p>
+            We are exploring a Bay Area clinic with renowned Icelandic horse trainer
+            <a class="trainer-link" href="https://www.sigvaldi.com/" target="_blank" rel="noopener">Sigvaldi Lárus Guðmundsson</a>.
+            If you would be interested, choose the October dates that work best for you.
+            Your response will help us decide whether we can make it happen.
+          </p>
+          <button class="btn btn-primary" type="button" id="open-clinic-poll-promo">Complete the Clinic Poll</button>
+        </div>
+      </dialog>
       <dialog class="clinic-modal" id="clinic-poll-dialog" aria-labelledby="clinic-poll-title">
         <div class="clinic-modal-header">
-          <h3 class="clinic-modal-title" id="clinic-poll-title">Sigvaldi Clinic Poll</h3>
+          <h3 class="clinic-modal-title" id="clinic-poll-title">Sigvaldi Lárus Guðmundsson Clinic Poll</h3>
           <button class="clinic-modal-close" type="button" id="close-clinic-poll" aria-label="Close clinic poll">&times;</button>
         </div>
-        <iframe src="https://eldur.notion.site/ebd//c16ec9dd085046d999a69ad382b54bdc" width="100%" height="600" frameborder="0" allowfullscreen title="Sigvaldi clinic date poll"></iframe>
+        <iframe src="https://eldur.notion.site/ebd//c16ec9dd085046d999a69ad382b54bdc" width="100%" height="600" frameborder="0" allowfullscreen title="Sigvaldi Lárus Guðmundsson clinic date poll"></iframe>
       </dialog>
     </div>
   </section>
@@ -781,22 +827,41 @@
   <script>
     const clinicPollDialog = document.getElementById('clinic-poll-dialog');
     const clinicPollOpen = document.getElementById('open-clinic-poll');
+    const clinicPollPromoOpen = document.getElementById('open-clinic-poll-promo');
     const clinicPollClose = document.getElementById('close-clinic-poll');
+    const clinicPromoDialog = document.getElementById('clinic-promo-dialog');
+    const clinicPromoClose = document.getElementById('close-clinic-promo');
+    const clinicPromoEndsAt = Date.parse('2026-08-15T00:00:00-07:00');
 
-    clinicPollOpen.addEventListener('click', () => clinicPollDialog.showModal());
+    const showClinicPoll = () => {
+      if (clinicPromoDialog.open) clinicPromoDialog.close();
+      clinicPollDialog.showModal();
+    };
+
+    clinicPollOpen.addEventListener('click', showClinicPoll);
+    clinicPollPromoOpen.addEventListener('click', showClinicPoll);
     clinicPollClose.addEventListener('click', () => clinicPollDialog.close());
+    clinicPromoClose.addEventListener('click', () => clinicPromoDialog.close());
 
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && clinicPollDialog.open) clinicPollDialog.close();
+      else if (event.key === 'Escape' && clinicPromoDialog.open) clinicPromoDialog.close();
     });
 
-    clinicPollDialog.addEventListener('click', (event) => {
-      const bounds = clinicPollDialog.getBoundingClientRect();
-      const clickedInside = event.clientX >= bounds.left && event.clientX <= bounds.right &&
-        event.clientY >= bounds.top && event.clientY <= bounds.bottom;
+    const closeOnBackdropClick = (dialog) => {
+      dialog.addEventListener('click', (event) => {
+        const bounds = dialog.getBoundingClientRect();
+        const clickedInside = event.clientX >= bounds.left && event.clientX <= bounds.right &&
+          event.clientY >= bounds.top && event.clientY <= bounds.bottom;
 
-      if (!clickedInside) clinicPollDialog.close();
-    });
+        if (!clickedInside) dialog.close();
+      });
+    };
+
+    closeOnBackdropClick(clinicPollDialog);
+    closeOnBackdropClick(clinicPromoDialog);
+
+    if (Date.now() < clinicPromoEndsAt) clinicPromoDialog.showModal();
   </script>
 
 </body>
