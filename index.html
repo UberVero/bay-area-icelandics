@@ -6,6 +6,16 @@
   <title>Bay Area Icelandics — Icelandic Horse Club of the SF Bay Area</title>
   <meta name="description" content="Bay Area Icelandics is a community for Icelandic horse owners, riders, and enthusiasts across the San Francisco Bay Area. Join us for group rides, clinics, and events." />
 
+  <!-- Fathom - beautiful, simple website analytics -->
+  <script src="https://cdn.usefathom.com/script.js" data-site="HIYUJOPT" defer></script>
+  <!-- / Fathom -->
+
+  <script>
+    if (navigator.vendor === 'Apple Computer, Inc.' && /Safari/.test(navigator.userAgent)) {
+      document.documentElement.classList.add('is-safari');
+    }
+  </script>
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -494,6 +504,26 @@
       display: block;
     }
 
+    .notion-safari-fallback {
+      display: none;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .notion-safari-fallback p {
+      max-width: 520px;
+      margin: 0 auto 1.5rem;
+      color: var(--text-mid);
+    }
+
+    .is-safari .notion-safari-fallback {
+      display: block;
+    }
+
+    .is-safari .notion-form-wrap iframe {
+      display: none;
+    }
+
     /* Fallback if no iframe yet */
     .form-placeholder {
       padding: 3rem 2rem;
@@ -781,7 +811,7 @@
           <h3 class="clinic-modal-title" id="clinic-poll-title">Sigvaldi Lárus Guðmundsson Clinic Poll</h3>
           <button class="clinic-modal-close" type="button" id="close-clinic-poll" aria-label="Close clinic poll">&times;</button>
         </div>
-        <iframe src="https://eldur.notion.site/ebd//c16ec9dd085046d999a69ad382b54bdc" width="100%" height="600" frameborder="0" allowfullscreen title="Sigvaldi Lárus Guðmundsson clinic date poll"></iframe>
+        <iframe data-notion-src="https://eldur.notion.site/ebd//c16ec9dd085046d999a69ad382b54bdc" width="100%" height="600" frameborder="0" allowfullscreen title="Sigvaldi Lárus Guðmundsson clinic date poll"></iframe>
       </dialog>
     </div>
   </section>
@@ -799,7 +829,11 @@
       </div>
 
       <div class="notion-form-wrap">
-        <iframe src="https://eldur.notion.site/ebd//329616168253803a973cc0e022978987" width="100%" height="600" frameborder="0" allowfullscreen></iframe>
+        <iframe data-notion-src="https://eldur.notion.site/ebd//329616168253803a973cc0e022978987" width="100%" height="600" frameborder="0" allowfullscreen loading="lazy" title="Bay Area Icelandics membership form"></iframe>
+        <div class="notion-safari-fallback">
+          <p>For a reliable experience in Safari, the membership form opens in a separate tab.</p>
+          <a class="btn btn-primary" href="https://eldur.notion.site/ebd//329616168253803a973cc0e022978987" target="_blank" rel="noopener">Open Membership Form</a>
+        </div>
       </div>
     </div>
   </section>
@@ -832,9 +866,22 @@
     const clinicPromoDialog = document.getElementById('clinic-promo-dialog');
     const clinicPromoClose = document.getElementById('close-clinic-promo');
     const clinicPromoEndsAt = Date.parse('2026-08-15T00:00:00-07:00');
+    const isSafari = document.documentElement.classList.contains('is-safari');
+    const clinicPollFrame = clinicPollDialog.querySelector('iframe');
+    const membershipFormFrame = document.querySelector('.notion-form-wrap iframe');
+    const clinicPollUrl = clinicPollFrame.dataset.notionSrc;
+
+    if (!isSafari) membershipFormFrame.src = membershipFormFrame.dataset.notionSrc;
 
     const showClinicPoll = () => {
       if (clinicPromoDialog.open) clinicPromoDialog.close();
+
+      if (isSafari) {
+        window.open(clinicPollUrl, '_blank', 'noopener');
+        return;
+      }
+
+      if (!clinicPollFrame.src) clinicPollFrame.src = clinicPollUrl;
       clinicPollDialog.showModal();
     };
 
