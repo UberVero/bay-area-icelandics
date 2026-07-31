@@ -365,6 +365,69 @@
       margin-bottom: 1.5rem;
     }
 
+    .clinic-card .btn {
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .clinic-modal {
+      width: min(760px, calc(100% - 2rem));
+      max-width: 760px;
+      margin: auto;
+      padding: 0;
+      border: none;
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--white);
+      color: var(--text-dark);
+      box-shadow: 0 18px 60px rgba(20, 32, 14, 0.32);
+    }
+
+    .clinic-modal::backdrop {
+      background: rgba(20, 32, 14, 0.72);
+      backdrop-filter: blur(3px);
+    }
+
+    .clinic-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: var(--cream);
+      border-bottom: 1px solid var(--cream-dark);
+    }
+
+    .clinic-modal-title {
+      margin: 0;
+      font-size: 1.2rem;
+      color: var(--green-dark);
+    }
+
+    .clinic-modal-close {
+      width: 2.5rem;
+      height: 2.5rem;
+      border: none;
+      border-radius: 50%;
+      background: transparent;
+      color: var(--green-dark);
+      cursor: pointer;
+      font-size: 1.75rem;
+      line-height: 1;
+    }
+
+    .clinic-modal-close:hover {
+      background: var(--cream-dark);
+    }
+
+    .clinic-modal iframe {
+      width: 100%;
+      height: min(600px, calc(100vh - 5rem));
+      border: none;
+      display: block;
+    }
+
     /* ─── Join ─────────────────────────────────────── */
     .join {
       background: var(--cream-dark);
@@ -665,8 +728,15 @@
           Sigvaldi. If you would be interested, choose the October dates that work
           best for you. Your response will help us decide whether we can make it happen.
         </p>
-        <a class="btn btn-primary" href="https://eldur.notion.site/ebd//3ae616168253813d8a28000c91899c48" target="_blank" rel="noopener">Complete the Clinic Poll</a>
+        <button class="btn btn-primary" type="button" id="open-clinic-poll">Complete the Clinic Poll</button>
       </div>
+      <dialog class="clinic-modal" id="clinic-poll-dialog" aria-labelledby="clinic-poll-title">
+        <div class="clinic-modal-header">
+          <h3 class="clinic-modal-title" id="clinic-poll-title">Sigvaldi Clinic Poll</h3>
+          <button class="clinic-modal-close" type="button" id="close-clinic-poll" aria-label="Close clinic poll">&times;</button>
+        </div>
+        <iframe src="https://eldur.notion.site/ebd//c16ec9dd085046d999a69ad382b54bdc" width="100%" height="600" frameborder="0" allowfullscreen title="Sigvaldi clinic date poll"></iframe>
+      </dialog>
     </div>
   </section>
 
@@ -707,6 +777,27 @@
       © 2026 Bay Area Icelandics. All rights reserved.
     </p>
   </footer>
+
+  <script>
+    const clinicPollDialog = document.getElementById('clinic-poll-dialog');
+    const clinicPollOpen = document.getElementById('open-clinic-poll');
+    const clinicPollClose = document.getElementById('close-clinic-poll');
+
+    clinicPollOpen.addEventListener('click', () => clinicPollDialog.showModal());
+    clinicPollClose.addEventListener('click', () => clinicPollDialog.close());
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && clinicPollDialog.open) clinicPollDialog.close();
+    });
+
+    clinicPollDialog.addEventListener('click', (event) => {
+      const bounds = clinicPollDialog.getBoundingClientRect();
+      const clickedInside = event.clientX >= bounds.left && event.clientX <= bounds.right &&
+        event.clientY >= bounds.top && event.clientY <= bounds.bottom;
+
+      if (!clickedInside) clinicPollDialog.close();
+    });
+  </script>
 
 </body>
 </html>
