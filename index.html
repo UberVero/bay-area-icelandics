@@ -387,7 +387,6 @@
       font-family: inherit;
     }
 
-    .clinic-modal,
     .clinic-promo-modal {
       width: min(760px, calc(100% - 2rem));
       max-width: 760px;
@@ -401,7 +400,6 @@
       box-shadow: 0 18px 60px rgba(20, 32, 14, 0.32);
     }
 
-    .clinic-modal::backdrop,
     .clinic-promo-modal::backdrop {
       background: rgba(20, 32, 14, 0.72);
       backdrop-filter: blur(3px);
@@ -430,22 +428,6 @@
       outline-offset: 2px;
     }
 
-    .clinic-modal-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 1rem 1.25rem;
-      background: var(--cream);
-      border-bottom: 1px solid var(--cream-dark);
-    }
-
-    .clinic-modal-title {
-      margin: 0;
-      font-size: 1.2rem;
-      color: var(--green-dark);
-    }
-
     .clinic-modal-close {
       width: 2.5rem;
       height: 2.5rem;
@@ -462,12 +444,17 @@
       background: var(--cream-dark);
     }
 
-    .clinic-modal iframe {
-      width: 100%;
-      height: min(600px, calc(100vh - 5rem));
-      border: none;
-      display: block;
+    .whatsapp-callout {
+      max-width: 760px;
+      margin: 0 auto 2.5rem;
+      padding: 2rem 1.25rem;
+      text-align: center;
+      background: var(--white);
+      border-radius: 8px;
+      border-top: 4px solid var(--green-dark);
     }
+
+    .whatsapp-callout p { margin: 0.75rem 0 1.25rem; }
 
     /* ─── Join ─────────────────────────────────────── */
     .join {
@@ -593,6 +580,7 @@
       .activities-grid { grid-template-columns: 1fr; }
 
       .btn-outline { display: none; }
+      .hero-whatsapp { display: inline-block; margin: 1rem 0 0; }
     }
   </style>
 </head>
@@ -623,7 +611,7 @@
         in the Bay Area.
       </p>
       <a href="#join" class="btn btn-primary">Join the Club</a>
-      <a href="#about" class="btn btn-outline">Learn More</a>
+      <a href="https://chat.whatsapp.com/H17VmL2j3b1Bf2PUutawOl" class="btn btn-outline hero-whatsapp" target="_blank" rel="noopener">Join Our WhatsApp Group</a>
     </div>
     <div class="hero-scroll">Scroll</div>
   </section>
@@ -751,6 +739,7 @@
           <div>
             <h4>Member WhatsApp Group</h4>
             <p>Stay connected with other members, share spontaneous rides, ask questions, and swap local barn recommendations.</p>
+            <p><a href="https://chat.whatsapp.com/H17VmL2j3b1Bf2PUutawOl" target="_blank" rel="noopener">Join our WhatsApp group &rarr;</a></p>
           </div>
         </div>
         <div class="activity-item">
@@ -778,40 +767,33 @@
     </div>
   </section>
 
-  <!-- Sigvaldi Clinic Interest -->
+  <!-- Sigvaldi Clinic -->
   <section class="clinic-interest" id="sigvaldi-clinic">
     <div class="section-inner">
       <div class="clinic-card">
-        <p class="section-label">Clinic in Planning</p>
-        <h2 class="section-title">Help bring Sigvaldi Lárus Guðmundsson to California this October</h2>
+        <p class="section-label">October 13 · Woodside Pony Club</p>
+        <h2 class="section-title">Ride or audit with Sigvaldi this October</h2>
         <p>
-          We are exploring a Bay Area clinic with renowned Icelandic horse trainer
-          <a class="trainer-link" href="https://www.sigvaldi.com/" target="_blank" rel="noopener">Sigvaldi Lárus Guðmundsson</a>.
-          If you would be interested, choose the October dates that work
-          best for you. Your response will help us decide whether we can make it happen.
+          Renowned Icelandic horse trainer
+          <a class="trainer-link" href="https://www.sigvaldi.com/" target="_blank" rel="noopener">Sigvaldi Lárus Guðmundsson</a>
+          is coming to Woodside Pony Club on October 13. Register as a rider or auditor.
+          Become a Bay Area Icelandics member to register — membership is free.
         </p>
-        <button class="btn btn-primary" type="button" id="open-clinic-poll">Complete the Clinic Poll</button>
+        <a class="btn btn-primary" href="#join">Become a Member to Register</a>
       </div>
       <dialog class="clinic-promo-modal" id="clinic-promo-dialog" aria-labelledby="clinic-promo-title">
         <div class="clinic-card">
           <button class="clinic-modal-close clinic-promo-close" type="button" id="close-clinic-promo" aria-label="Close clinic announcement">&times;</button>
-          <p class="section-label">Clinic in Planning</p>
-          <h2 class="section-title" id="clinic-promo-title">Help bring Sigvaldi Lárus Guðmundsson to California this October</h2>
+          <p class="section-label">October 13 · Woodside Pony Club</p>
+          <h2 class="section-title" id="clinic-promo-title">Ride or audit with Sigvaldi this October</h2>
           <p>
-            We are exploring a Bay Area clinic with renowned Icelandic horse trainer
-            <a class="trainer-link" href="https://www.sigvaldi.com/" target="_blank" rel="noopener">Sigvaldi Lárus Guðmundsson</a>.
-            If you would be interested, choose the October dates that work best for you.
-            Your response will help us decide whether we can make it happen.
+            Renowned Icelandic horse trainer
+            <a class="trainer-link" href="https://www.sigvaldi.com/" target="_blank" rel="noopener">Sigvaldi Lárus Guðmundsson</a>
+            is coming to Woodside Pony Club on October 13. Register as a rider or auditor.
+            Become a Bay Area Icelandics member to register — membership is free.
           </p>
-          <button class="btn btn-primary" type="button" id="open-clinic-poll-promo">Complete the Clinic Poll</button>
+          <a class="btn btn-primary" href="#join" id="clinic-promo-join">Become a Member to Register</a>
         </div>
-      </dialog>
-      <dialog class="clinic-modal" id="clinic-poll-dialog" aria-labelledby="clinic-poll-title">
-        <div class="clinic-modal-header">
-          <h3 class="clinic-modal-title" id="clinic-poll-title">Sigvaldi Lárus Guðmundsson Clinic Poll</h3>
-          <button class="clinic-modal-close" type="button" id="close-clinic-poll" aria-label="Close clinic poll">&times;</button>
-        </div>
-        <iframe data-notion-src="https://eldur.notion.site/ebd//c16ec9dd085046d999a69ad382b54bdc" width="100%" height="600" frameborder="0" allowfullscreen title="Sigvaldi Lárus Guðmundsson clinic date poll"></iframe>
       </dialog>
     </div>
   </section>
@@ -823,10 +805,16 @@
         <p class="section-label">Join Us</p>
         <h2 class="section-title">Become a member — it's free</h2>
         <p>
-          Sign up below to join the Bay Area Icelandics community. We'll add you to
-          our WhatsApp group and keep you in the loop on upcoming rides and events.
+          Sign up below to become a Bay Area Icelandics member. Membership is free
+          and lets you register for the Sigvaldi clinic as a rider or auditor.
         </p>
       </div>
+
+      <aside class="whatsapp-callout" aria-labelledby="whatsapp-title">
+        <h3 id="whatsapp-title">Join the conversation on WhatsApp</h3>
+        <p>Connect with local Icelandic horse lovers, plan rides, and keep up with club events.</p>
+        <a class="btn btn-primary" href="https://chat.whatsapp.com/H17VmL2j3b1Bf2PUutawOl" target="_blank" rel="noopener">Join Our WhatsApp Group</a>
+      </aside>
 
       <div class="notion-form-wrap">
         <iframe data-notion-src="https://eldur.notion.site/ebd//329616168253803a973cc0e022978987" width="100%" height="600" frameborder="0" allowfullscreen loading="lazy" title="Bay Area Icelandics membership form"></iframe>
@@ -851,7 +839,7 @@
     </div>
     <p>
       San Francisco Bay Area, California<br />
-      <a href="mailto:hello@bayareaicelandics.club">hello@bayareaicelandics.club</a>
+      <a href="https://chat.whatsapp.com/H17VmL2j3b1Bf2PUutawOl" target="_blank" rel="noopener">Connect with us on WhatsApp</a>
     </p>
     <p style="margin-top:1.5rem; font-size:0.8rem; opacity:0.5;">
       © 2026 Bay Area Icelandics. All rights reserved.
@@ -859,41 +847,17 @@
   </footer>
 
   <script>
-    const clinicPollDialog = document.getElementById('clinic-poll-dialog');
-    const clinicPollOpen = document.getElementById('open-clinic-poll');
-    const clinicPollPromoOpen = document.getElementById('open-clinic-poll-promo');
-    const clinicPollClose = document.getElementById('close-clinic-poll');
     const clinicPromoDialog = document.getElementById('clinic-promo-dialog');
     const clinicPromoClose = document.getElementById('close-clinic-promo');
-    const clinicPromoEndsAt = Date.parse('2026-08-15T00:00:00-07:00');
+    const clinicPromoJoin = document.getElementById('clinic-promo-join');
+    const clinicPromoEndsAt = Date.parse('2026-10-14T00:00:00-07:00');
     const isSafari = document.documentElement.classList.contains('is-safari');
-    const clinicPollFrame = clinicPollDialog.querySelector('iframe');
     const membershipFormFrame = document.querySelector('.notion-form-wrap iframe');
-    const clinicPollUrl = clinicPollFrame.dataset.notionSrc;
 
     if (!isSafari) membershipFormFrame.src = membershipFormFrame.dataset.notionSrc;
 
-    const showClinicPoll = () => {
-      if (clinicPromoDialog.open) clinicPromoDialog.close();
-
-      if (isSafari) {
-        window.open(clinicPollUrl, '_blank', 'noopener');
-        return;
-      }
-
-      if (!clinicPollFrame.src) clinicPollFrame.src = clinicPollUrl;
-      clinicPollDialog.showModal();
-    };
-
-    clinicPollOpen.addEventListener('click', showClinicPoll);
-    clinicPollPromoOpen.addEventListener('click', showClinicPoll);
-    clinicPollClose.addEventListener('click', () => clinicPollDialog.close());
     clinicPromoClose.addEventListener('click', () => clinicPromoDialog.close());
-
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && clinicPollDialog.open) clinicPollDialog.close();
-      else if (event.key === 'Escape' && clinicPromoDialog.open) clinicPromoDialog.close();
-    });
+    clinicPromoJoin.addEventListener('click', () => clinicPromoDialog.close());
 
     const closeOnBackdropClick = (dialog) => {
       dialog.addEventListener('click', (event) => {
@@ -905,13 +869,12 @@
       });
     };
 
-    closeOnBackdropClick(clinicPollDialog);
     closeOnBackdropClick(clinicPromoDialog);
 
     if (Date.now() < clinicPromoEndsAt) {
       window.addEventListener('load', () => {
         window.setTimeout(() => {
-          if (!clinicPollDialog.open) clinicPromoDialog.showModal();
+          clinicPromoDialog.showModal();
         }, 3000);
       }, { once: true });
     }
