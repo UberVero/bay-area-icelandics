@@ -30,6 +30,10 @@ Member signups go into a Notion database:
 
 Fields collected: First Name, Last Name, Email, Phone (WhatsApp), I am a..., Experience Level, USIHC Member?, How did you hear about us?, Notes.
 
+The form is embedded directly in the membership section and loads as visitors approach it. A backup link below the form opens it in a new tab if needed. The earlier Safari-only fallback was introduced after Notion embeds caused crashes; the current layout uses a single, lazily loaded membership embed.
+
+The October 13 clinic announcement and clinic section show the remaining lesson availability. Update both when the last lesson spot is booked.
+
 ## Deploying changes
 
 This site is hosted on GitHub Pages. To publish an update:

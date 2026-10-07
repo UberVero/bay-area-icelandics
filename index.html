@@ -56,10 +56,35 @@ header{transition:box-shadow .4s var(--ease-out)}header.scrolled{box-shadow:0 6p
 .breed-video{background:#17271d;display:flex;align-items:center;justify-content:center}
 .breed-video video{display:block;width:100%;height:100%;object-fit:contain}
 @media(max-width:700px){.breed-video{aspect-ratio:auto;height:min(110vw,520px)}}
+
+/* Clinic announcement and direct membership signup */
+.announcement{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:14px 30px;padding:18px 5vw;font-size:13px;font-weight:600}
+.announcement .announcement-details{margin:0;text-decoration:none;letter-spacing:.07em}
+.announcement .announcement-action{display:flex;align-items:center;gap:18px;margin:0;padding:12px 20px;background:var(--forest);color:var(--cream);font-size:14px;text-decoration:none;letter-spacing:0;transition:background .25s}
+.announcement .announcement-action span{margin:0;text-decoration:none}
+.announcement .announcement-action small{display:block;color:#ddc490;font-size:11px;font-weight:500;margin-top:2px}
+.announcement:hover .announcement-action{background:#34503c}
+.hero{height:calc(100svh - 160px)}
+.event .lesson-availability{font-weight:600;color:var(--forest)}
+.join{grid-template-columns:.85fr 1.15fr;gap:32px 60px;align-items:start}
+.join-intro .text-link{display:inline-block;margin-top:24px}
+.notion-form-wrap{grid-column:2;grid-row:1 / span 2;min-width:0}
+.notion-form-wrap iframe{display:block;width:100%;height:920px;border:1px solid var(--line);border-radius:3px;background:white}
+.join .form-fallback{font-size:12px;margin-top:14px;max-width:none}
+.join-faq{grid-column:1}
+@media(max-width:700px){
+ .announcement{gap:12px;padding:16px 6vw;font-size:11px}
+ .announcement .announcement-action{width:100%;justify-content:center;padding:11px 15px;font-size:14px;text-align:left}
+ .announcement .announcement-action span{display:inline}
+ .hero{height:auto}
+ .join{grid-template-columns:1fr;gap:30px}
+ .notion-form-wrap,.join-faq{grid-column:auto;grid-row:auto}
+ .notion-form-wrap iframe{height:850px}
+}
 </style>
 </head>
 <body>
-<a class="announcement" href="#clinic">OCTOBER 13 · SIGVALDI AT WOODSIDE PONY CLUB <span>Ride or audit with us →</span></a>
+<a class="announcement" href="#clinic"><span class="announcement-details">OCTOBER 13 · SIGVALDI AT WOODSIDE PONY CLUB</span><span class="announcement-action"><span>Audit or take a lesson<small>One lesson spot available</small></span><span aria-hidden="true">→</span></span></a>
 <header><a class="brand" href="#">Bay Area Icelandics</a><nav aria-label="Main navigation"><a href="#about">Our club</a><a href="#why">The breed</a><a href="#clinic">The clinic</a><a href="#activities">Community</a><a class="nav-join" href="#join">Become a member ↗</a></nav></header>
 <main>
 <section class="hero"><div class="hero-content"><p class="eyebrow">San Francisco Bay Area</p><h1>The Bay Area's home for<br />Icelandic horse lovers</h1><p class="hero-copy">
@@ -121,7 +146,7 @@ header{transition:box-shadow .4s var(--ease-out)}header.scrolled{box-shadow:0 6p
  <div class="slide-dots" aria-label="Choose a breed feature"><button type="button" class="slide-dot" data-slide="0" aria-label="Show Five Unique Gaits" aria-pressed="true"><span></span></button><button type="button" class="slide-dot" data-slide="1" aria-label="Show Hardy &amp; Long-Lived" aria-pressed="false"><span></span></button><button type="button" class="slide-dot" data-slide="2" aria-label="Show Spirited &amp; Gentle" aria-pressed="false"><span></span></button><button type="button" class="slide-dot" data-slide="3" aria-label="Show Pure Bloodlines" aria-pressed="false"><span></span></button><button type="button" class="slide-dot" data-slide="4" aria-label="Show Built for Trails" aria-pressed="false"><span></span></button><button type="button" class="slide-dot" data-slide="5" aria-label="Show A Global Community" aria-pressed="false"><span></span></button></div>
  <div class="slide-arrows"><button type="button" id="breed-prev" aria-label="Previous breed feature" aria-controls="breed-track" disabled>←</button><button type="button" id="breed-next" aria-label="Next breed feature" aria-controls="breed-track">→</button></div></div></div>
 </section>
-<section class="event" id="clinic"><div class="date"><span>OCTOBER</span><strong>13</strong><span>2026 · WOODSIDE</span></div><div><div class="eyebrow">Coming to our community</div><h2>Ride or audit with Sigvaldi this October</h2><div class="details"><span>Woodside Pony Club</span><span>Riders &amp; auditors welcome</span></div><p>Renowned Icelandic horse trainer <a href="https://www.sigvaldi.com/" target="_blank" rel="noopener">Sigvaldi Lárus Guðmundsson</a> is coming to Woodside Pony Club on October 13. Register as a rider or auditor. Become a Bay Area Icelandics member to register — membership is free.</p><div class="actions"><a class="button" href="#join">Become a member to register <span>↗</span></a></div></div></section>
+<section class="event" id="clinic"><div class="date"><span>OCTOBER</span><strong>13</strong><span>2026 · WOODSIDE</span></div><div><div class="eyebrow">October 13 clinic</div><h2>Audit or take a lesson with Sigvaldi</h2><div class="details"><span>Woodside Pony Club</span><span class="lesson-availability">One lesson spot available · Auditors welcome</span></div><p>Renowned Icelandic horse trainer <a href="https://www.sigvaldi.com/" target="_blank" rel="noopener">Sigvaldi Lárus Guðmundsson</a> is coming to Woodside Pony Club on October 13. Join us as an auditor or take the remaining lesson spot. Become a Bay Area Icelandics member to register — membership is free.</p><div class="actions"><a class="button" href="#join">Audit or take a lesson <span aria-hidden="true">→</span></a></div></div></section>
 <section class="activities" id="activities">
     <div class="section-inner">
       <p class="section-label">What We Do</p>
@@ -185,7 +210,14 @@ header{transition:box-shadow .4s var(--ease-out)}header.scrolled{box-shadow:0 6p
 <article><p class="eyebrow">Valkyrie Icelandic</p><h3>Laura “Lala” Benson</h3><p>Icelandic horsemanship and classical dressage.</p><a class="text-link" href="https://valkyrieicelandic.com/" target="_blank" rel="noopener">Visit Laura’s website ↗</a></article>
 <article><p class="eyebrow">Álfadans Equestrian Arts</p><h3>Caeli Cavanagh</h3><p>Head trainer and instructor at Álfadans Equestrian Arts.</p><a class="text-link" href="https://www.alfadans.com/" target="_blank" rel="noopener">Visit Caeli’s website ↗</a></article>
 </div></section>
-<section class="join" id="join"><div><p class="eyebrow">Join Us</p><h2>Become a member — it's free</h2><p>Sign up below to become a Bay Area Icelandics member. Membership is free and lets you register for the Sigvaldi clinic as a rider or auditor.</p><div class="actions"><a class="button" href="https://eldur.notion.site/ebd//329616168253803a973cc0e022978987" target="_blank" rel="noopener">Open membership form <span>↗</span></a></div><a class="text-link" href="https://chat.whatsapp.com/H17VmL2j3b1Bf2PUutawOl" target="_blank" rel="noopener">Questions? Connect on WhatsApp ↗</a></div><div><details open><summary>Do I need to own an Icelandic horse?</summary><p>No. Owners, riders, breeders, and enthusiasts are welcome. You can join at any experience level.</p></details><details><summary>How do I register for the October 13 clinic?</summary><p>Start by becoming a club member using the membership form. You can register for the clinic as a rider or auditor. Connect with us on WhatsApp for help with the next steps.</p></details><details><summary>Where does the community connect?</summary><p>Join our WhatsApp group for conversations, ride plans, and upcoming club events around the Bay Area.</p></details></div></section>
+<section class="join" id="join" aria-labelledby="join-title">
+ <div class="join-intro"><p class="eyebrow">Join Us</p><h2 id="join-title">Become a member — it's free</h2><p>Fill out the form to become a Bay Area Icelandics member. Membership is free and lets you register for the Sigvaldi clinic as a rider or auditor.</p><a class="text-link" href="https://chat.whatsapp.com/H17VmL2j3b1Bf2PUutawOl" target="_blank" rel="noopener">Questions? Connect on WhatsApp ↗</a></div>
+ <div class="notion-form-wrap">
+  <iframe src="https://eldur.notion.site/ebd//329616168253803a973cc0e022978987" width="100%" height="920" loading="lazy" title="Bay Area Icelandics membership form"></iframe>
+  <p class="form-fallback">Form not loading? <a href="https://eldur.notion.site/ebd//329616168253803a973cc0e022978987" target="_blank" rel="noopener">Open it in a new tab ↗</a></p>
+ </div>
+ <div class="join-faq"><details open><summary>Do I need to own an Icelandic horse?</summary><p>No. Owners, riders, breeders, and enthusiasts are welcome. You can join at any experience level.</p></details><details><summary>How do I register for the October 13 clinic?</summary><p>Start by becoming a club member using the form here. One lesson spot is available, and auditors are welcome. Connect with us on WhatsApp for help with registration.</p></details><details><summary>Where does the community connect?</summary><p>Join our WhatsApp group for conversations, ride plans, and upcoming club events around the Bay Area.</p></details></div>
+</section>
 </main><footer class="site-footer">
 <div class="footer-grid">
 <div class="footer-intro"><h2>Bay Area Icelandics</h2><p>A local community for Icelandic horse owners, riders, and enthusiasts.</p></div>
