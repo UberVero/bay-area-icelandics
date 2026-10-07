@@ -34,6 +34,8 @@ The form is embedded directly in the membership section and loads as visitors ap
 
 The October 13 clinic announcement and clinic section show the remaining lesson availability. Update both when the last lesson spot is booked.
 
+The clinic section also includes directions and participant instructions, adapted from the Caeli clinic recap in [Clinic project Feb 2026](https://app.notion.com/p/d90e0bbfb5c049259a7f1027a34899aa). The Tripp Road address is also listed on [Woodside Pony Club's website](https://woodside.ponyclub.org/about/). Previous clinic pricing, schedules, and social plans have not been carried over; visitors are directed to Veronica for current booking details.
+
 ## Deploying changes
 
 This site is hosted on GitHub Pages. To publish an update:
