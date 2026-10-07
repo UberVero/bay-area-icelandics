@@ -30,6 +30,14 @@ Member signups go into a Notion database:
 
 Fields collected: First Name, Last Name, Email, Phone (WhatsApp), I am a..., Experience Level, USIHC Member?, How did you hear about us?, Notes.
 
+The form is embedded directly in the membership section and loads as visitors approach it. A backup link below the form opens it in a new tab if needed. The earlier Safari-only fallback was introduced after Notion embeds caused crashes; the current layout uses a single, lazily loaded membership embed.
+
+The October 13 clinic announcement and clinic section show the remaining lesson availability. Update both when the last lesson spot is booked.
+
+The clinic section also includes directions and participant instructions, adapted from the Caeli clinic recap in [Clinic project Feb 2026](https://app.notion.com/p/d90e0bbfb5c049259a7f1027a34899aa). The Tripp Road address is also listed on [Woodside Pony Club's website](https://woodside.ponyclub.org/about/). Previous clinic pricing, schedules, and social plans have not been carried over; visitors are directed to Veronica for current booking details.
+
+For the October 13 clinic, Veronica confirmed that the packing list applies to registered riders only, a porta-potty is available on-site, available stalls can be used for horses to rest while waiting, and auditing costs $20. Donations to Woodside Pony Club are welcome.
+
 ## Deploying changes
 
 This site is hosted on GitHub Pages. To publish an update:
