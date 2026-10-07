@@ -36,6 +36,8 @@ The October 13 clinic announcement and clinic section show the remaining lesson 
 
 The clinic section also includes directions and participant instructions, adapted from the Caeli clinic recap in [Clinic project Feb 2026](https://app.notion.com/p/d90e0bbfb5c049259a7f1027a34899aa). The Tripp Road address is also listed on [Woodside Pony Club's website](https://woodside.ponyclub.org/about/). Previous clinic pricing, schedules, and social plans have not been carried over; visitors are directed to Veronica for current booking details.
 
+For the October 13 clinic, Veronica confirmed that the packing list applies to registered riders only, a porta-potty is available on-site, and auditing costs $20. Donations to Woodside Pony Club are welcome.
+
 ## Deploying changes
 
 This site is hosted on GitHub Pages. To publish an update:
