@@ -32,7 +32,7 @@ Fields collected: First Name, Last Name, Email, Phone (WhatsApp), I am a..., Exp
 
 The form is embedded directly in the membership section and loads as visitors approach it. A backup link below the form opens it in a new tab if needed. The earlier Safari-only fallback was introduced after Notion embeds caused crashes; the current layout uses a single, lazily loaded membership embed.
 
-The October 13 clinic announcement and clinic section show the remaining lesson availability. Update both when the last lesson spot is booked.
+The October 13 clinic announcement and clinic section do not advertise remaining lesson availability. Sigvaldi’s name links to the supplied YouTube video.
 
 The clinic section also includes directions and participant instructions, adapted from the Caeli clinic recap in [Clinic project Feb 2026](https://app.notion.com/p/d90e0bbfb5c049259a7f1027a34899aa). The Tripp Road address is also listed on [Woodside Pony Club's website](https://woodside.ponyclub.org/about/). Previous clinic pricing, schedules, and social plans have not been carried over; visitors are directed to Veronica for current booking details.
 
