@@ -50,7 +50,9 @@ This site is hosted on GitHub Pages. To publish an update:
    git commit -m "describe your change here"
    git push
    ```
-3. Changes go live at bayareaicelandics.club within a minute or two.
+3. GitHub Actions validates tracking before publishing. A failed check stops the update and leaves the previous successful site live. Check the “Validate and publish website” workflow in GitHub Actions for progress.
+
+The Pages publishing source must remain **GitHub Actions**, with the existing custom domain. The workflow publishes `index.html`, `CNAME`, `hero.jpeg`, and `images/`; include any future public pages in both its package and analytics validation.
 
 ## Custom domain DNS records
 
@@ -63,3 +65,18 @@ If you ever need to re-point the domain (e.g. switching registrars), set these D
 | A | `@` | `185.199.110.153` |
 | A | `@` | `185.199.111.153` |
 | CNAME | `www` | `ubervero.github.io` |
+
+## Analytics safeguard
+
+Fathom records pageviews under the existing **Bay Area Icelandics** property, site ID `HIYUJOPT`. Preserve its script in `<head>` when redesigning the page. No API key is embedded or needed. This restoration measures traffic going forward; it cannot recover the missing historical period.
+
+Before publishing:
+
+```sh
+python3 -m unittest discover -s tests -v
+python3 scripts/check_analytics.py
+```
+
+The publishing workflow runs the regression tests and checks both source and packaged HTML. It rejects a missing, commented-out, duplicate, disabled, or wrong-account tracker. After deploying it checks the live HTML too. A failed GitHub Actions run is visible in the repository; GitHub notifications depend on the account's notification preferences.
+
+These checks protect the publishing path against accidental removal. They cannot guarantee delivery when a visitor blocks analytics, Fathom is unavailable, or an administrator deliberately changes the workflow or publishing settings.
